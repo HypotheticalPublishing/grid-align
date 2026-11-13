@@ -1,6 +1,6 @@
 # Grid Align
 
-Plenty of maps come with a grid drawn into the art that never quite lines up with Foundry's grid. Grid Align fixes that by moving Foundry's grid, not the map. Draw a box over nine of the map's cells, or scale, drag and nudge the grid by hand, check the pink preview, then apply. The artwork, walls, tokens and lights stay exactly where they were.
+Easy and lightweight moving and scaling of the map grid in Foundry. Designed to be simple and fast with no fuss. I made this because there weren't any other grid alignment mods I could find which didn't move the walls and lights when aligning the grid.
 
 <!-- SCREENSHOT: the Grid Align window beside a map, with the pink preview grid lined up on the map's own grid. Save it as docs/grid-align.png and link it here. -->
 
@@ -9,9 +9,7 @@ Plenty of maps come with a grid drawn into the art that never quite lines up wit
 - Draw a 3×3 box on a square grid: drag across three of the map's cells and Grid Align sets the cell size and position in one go.
 - Change the cell size by typing it, or step it by one pixel with the − and + buttons. Hold a button to keep stepping.
 - Move the grid by dragging it on the map, by typing Grid shift X and Y, or with the arrow pad in steps of 1, 5 or 10 px. Shift + arrow keys nudge 10 px from anywhere while the window is open.
-- Preview before you save. The adjusted grid shows in bright pink on the map, and only you see it. Turn the preview off to compare with the saved grid.
-- Nothing is saved until you choose Apply alignment. Revert to saved, Cancel or closing the window throws the draft away, and it asks first if you have changes you haven't applied.
-- Snapping, measuring and the drawn grid all follow the new alignment, for every player and on every level of the scene.
+- Preview before you save. The adjusted grid shows in bright pink on the map, and only you see it. 
 - No artwork, wall, token, tile or light positions are written. If a new cell size changes how the scene's padding rounds, Grid Align shifts the scene to make up for it, so the map stays at the same place on the canvas.
 - A **Solid windows** setting turns off the frosted glass behind the window, per player, if it is hard to read or slows your game.
 

@@ -1,0 +1,92 @@
+/* Grid Align: layout, plus the few module-scoped fixes noted below. Colors, type, glass and
+   components come from foundry-kit.css (Hypothetical Foundry Kit 2.0), bundled with this module.
+   Drag and Box are kit buttons with aria-pressed (teal while on); the gold primary is Apply alignment. */
+
+/* Window: the kit's fk-app owns scrolling so the footer stays visible. */
+#grid-align { max-width: calc(100vw - 16px); max-height: calc(100vh - 24px); min-width: 320px; }
+.fvtt-kit .ga { flex: 1 1 auto; --fk-app-max-height: calc(100vh - 80px); }
+.fvtt-kit .ga p { margin: 0; }
+/* Room to breathe: a little more space around and between the panels than the kit default, using kit steps. */
+.fvtt-kit .ga .fk-app-body { padding: var(--fk-space-5); gap: var(--fk-space-5); }
+.fvtt-kit .ga .fk-panel-body { gap: var(--fk-space-4); }
+
+/* Header names the map being aligned: scene in the title slot, level beneath at body size. */
+.fvtt-kit .ga .ga-scene { overflow-wrap: anywhere; }
+.fvtt-kit .ga .ga-level { font-size: 15px; line-height: 22px; }
+
+/* Alegreya Sans draws old-style figures by default, which read small next to the labels.
+   Numbers in fields, units and steps use lining figures at body size.
+   The selector outranks Foundry's own input[type=number] rules, which can set a smaller font. */
+.fvtt-kit .ga input.fk-input.ga-number { font: 400 15px/22px var(--font-ui); font-variant-numeric: lining-nums tabular-nums; }
+.fvtt-kit .ga .fk-input-affix .fk-affix { font-size: 15px; font-variant-numeric: lining-nums; }
+.fvtt-kit .ga .ga-step button { font-variant-numeric: lining-nums tabular-nums; }
+/* Kit components set display, which would override the hidden attribute. */
+.fvtt-kit .ga .fk-error[hidden] { display: none; }
+
+.fvtt-kit .ga .ga-tool { display: flex; flex-direction: column; align-items: flex-start; gap: var(--fk-space-2); }
+.fvtt-kit .ga .ga-tool-row { flex-direction: row; flex-wrap: wrap; }
+/* Cell size between icon-only steppers; its error line sits under the whole row (in .ga-size-wrap), so the steppers stay level with the field. */
+.fvtt-kit .ga .ga-size-wrap { display: grid; gap: var(--fk-space-1); }
+.fvtt-kit .ga .ga-size { display: grid; grid-template-columns: auto minmax(80px, 1fr) auto; gap: var(--fk-space-2); align-items: end; }
+.fvtt-kit .ga .ga-size > .fk-field { min-width: 0; }
+.fvtt-kit .ga .ga-move-row { display: flex; gap: var(--fk-space-6); align-items: flex-end; flex-wrap: wrap; }
+/* A compact 3×2 pad of square icon buttons. */
+.fvtt-kit .ga .ga-pad { display: grid; grid-template-columns: repeat(3, var(--fk-control-h)); gap: var(--fk-space-1); justify-content: start; width: max-content; border-radius: var(--fk-radius-md); }
+.fvtt-kit .ga .ga-pad [data-ga="up"] { grid-column: 2; }
+.fvtt-kit .ga .ga-pad [data-ga="left"] { grid-column: 1; }
+.fvtt-kit .ga .ga-pad:focus-visible { outline: 2px solid var(--fk-focus); outline-offset: 2px; }
+.fvtt-kit .ga .ga-offsets { display: grid; grid-template-columns: 1fr 1fr; gap: var(--fk-space-3); }
+/* The preview switch stands alone (1.0.1: its two descriptor lines are gone); it hugs its label so the tooltip area does too. */
+.fvtt-kit .ga .ga-preview { justify-self: start; }
+
+/* Focus (1.0.2: Foundry's orange focus outline stayed on a clicked control). Foundry's own :focus
+   style (an orange outline and glow on buttons, fields and checkboxes) matches a control focused by a mouse click and
+   outranks the kit, which only styles :focus-visible. In this module's windows it is turned off for mouse focus and
+   each kit control keeps its resting look; keyboard focus (:focus-visible) keeps the kit's blue ring. Scoped under the
+   window root, more specific than Foundry's rules and than other modules' kit copies, which can load after this file,
+   so it holds with any kit version in the world. */
+#grid-align :is(button, input, select, textarea, summary, a, [tabindex]):focus:not(:focus-visible) { outline: none; }
+#grid-align :where(button, input, select, textarea, summary):focus-visible { outline: 2px solid var(--fk-focus); outline-offset: 2px; }
+#grid-align :is(.fk-input, .fk-select, .fk-textarea):focus-visible { outline-offset: 0; border-color: var(--fk-focus); }
+#grid-align :is(.fk-choice > input, .fk-range):focus-visible { outline: none; }
+#grid-align .fk-menu-item:focus-visible { outline-offset: -2px; }
+/* Resting looks while focused (the kit's own values). */
+#grid-align .fk-btn:focus:not(:active):not(:disabled) { box-shadow: var(--fk-shadow-control); }
+#grid-align :is(.fk-btn-quiet, .fk-btn-danger, .fk-btn[aria-disabled="true"]):focus:not(:active), #grid-align .fk-btn:disabled:focus { box-shadow: none; }
+#grid-align .fk-btn-primary:focus:not(:active):not(:disabled) { box-shadow: var(--fk-shadow-primary); }
+#grid-align .fk-btn-primary:is(:hover, :focus-visible):focus:not(:active):not(:disabled) { box-shadow: var(--fk-shadow-primary), var(--fk-glow-gold); }
+#grid-align .fk-btn-danger-confirm:focus:not(:active) { box-shadow: var(--fk-shadow-control); }
+#grid-align .fk-btn[aria-pressed="true"]:focus:not(:active), #grid-align .fk-segmented button:is([aria-pressed="true"], [aria-checked="true"]):focus { box-shadow: var(--fk-shadow-control), 0 0 12px var(--fk-teal-glow); }
+#grid-align :is(.fk-segmented button, .fk-tabs [role="tab"], .fk-menu-item, .fk-sidenav :is(button, a), .fk-steps :is(button, a), .fk-range):focus:not([aria-pressed="true"], [aria-checked="true"]) { box-shadow: none; }
+#grid-align .fk-row:focus:not([aria-selected="true"], [aria-checked="true"]) { box-shadow: none; }
+#grid-align .fk-row:is([aria-selected="true"], [aria-checked="true"]):focus { box-shadow: inset 0 0 0 1px var(--fk-teal), var(--fk-shadow-lift); }
+#grid-align .fk-slot:focus:not([aria-selected="true"], [aria-pressed="true"]) { box-shadow: var(--fk-shadow-control); }
+#grid-align .fk-slot:is([aria-selected="true"], [aria-pressed="true"]):focus { box-shadow: var(--fk-glow-teal), inset 0 0 0 1px var(--fk-teal); }
+#grid-align :is(.fk-input, .fk-select, .fk-textarea):focus:not(:disabled) { box-shadow: var(--fk-shadow-well); }
+#grid-align :is(.fk-check input[type="checkbox"], .fk-choice > input, .fk-toggle input[type="checkbox"]):focus:not(:checked) { box-shadow: var(--fk-shadow-well); }
+#grid-align :is(.fk-check input[type="checkbox"], .fk-choice > input):checked:focus { box-shadow: 0 0 8px var(--fk-teal-glow); }
+#grid-align .fk-toggle input[type="checkbox"]:checked:focus { box-shadow: var(--fk-glow-teal); }
+/* Foundry's window header buttons (Toggle controls, Close) rest without a shadow. */
+#grid-align .window-header button:focus { box-shadow: none; }
+
+/* Number fields keep keyboard stepping but drop the spinner, which collides with the unit. */
+.fvtt-kit .ga .ga-number { appearance: textfield; -moz-appearance: textfield; }
+.fvtt-kit .ga .ga-number::-webkit-outer-spin-button,
+.fvtt-kit .ga .ga-number::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+
+/* Footer status at body size: the kit adds a gold dot for unsaved changes; errors read in danger red. */
+.fvtt-kit .ga .ga-status { min-height: 22px; font-size: 15px; line-height: 22px; overflow-wrap: anywhere; }
+.fvtt-kit .ga .ga-status[data-state="dirty"] { color: var(--fk-ink); font-weight: 500; }
+.fvtt-kit .ga .ga-status[data-state="dirty"]::before { width: 10px; height: 10px; }
+.fvtt-kit .ga .ga-status[data-state="error"] { color: var(--fk-danger); font-weight: 500; }
+
+@container (max-width: 400px) {
+  .fvtt-kit .ga .ga-move-row { gap: var(--fk-space-2); }
+  .fvtt-kit .ga .ga-offsets { grid-template-columns: 1fr; }
+  .fvtt-kit .ga .ga-keys { display: none; }
+}
+
+/* On-map 3×3 guide: drawn over the canvas, outside any kit window. */
+.ga-box-guide{position:fixed;inset:0;width:100vw;height:100vh;z-index:1;pointer-events:none;overflow:hidden}
+.ga-box-guide rect{fill:rgba(74,202,199,.12);stroke:#65e2de;stroke-width:2} /* kit-ok: on-map guide over the canvas, not window chrome */
+.ga-box-guide line{stroke:#65e2de;stroke-width:1.5} /* kit-ok: on-map guide over the canvas, not window chrome */

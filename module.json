@@ -1,0 +1,37 @@
+{
+  "id": "grid-align",
+  "title": "Grid Align",
+  "description": "Align Foundry's grid to the grid drawn on a map: draw a 3×3 box on square grids, or scale, drag and nudge the grid, while the map artwork stays put.",
+  "version": "1.0.3",
+  "authors": [
+    {
+      "name": "Hypothetical Publishing",
+      "url": "https://github.com/HypotheticalPublishing"
+    }
+  ],
+  "url": "https://github.com/HypotheticalPublishing/grid-align",
+  "manifest": "https://github.com/HypotheticalPublishing/grid-align/releases/latest/download/module.json",
+  "download": "https://github.com/HypotheticalPublishing/grid-align/releases/download/v1.0.3/module.zip",
+  "license": "LICENSE",
+  "readme": "README.md",
+  "bugs": "https://github.com/HypotheticalPublishing/grid-align/issues",
+  "changelog": "https://github.com/HypotheticalPublishing/grid-align/blob/main/CHANGELOG.md",
+  "compatibility": {
+    "minimum": "14",
+    "verified": "14.369"
+  },
+  "esmodules": [
+    "scripts/main.mjs"
+  ],
+  "styles": [
+    "styles/foundry-kit.css",
+    "styles/app.css"
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
+  ]
+}

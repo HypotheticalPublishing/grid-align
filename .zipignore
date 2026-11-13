@@ -1,0 +1,5 @@
+# Development files that build-release.mjs (and any copy of the zip builder) must not ship.
+dist/**
+docs/**
+package.json
+package-lock.json

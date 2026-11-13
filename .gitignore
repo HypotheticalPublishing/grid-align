@@ -1,0 +1,15 @@
+node_modules/
+dist/
+*.zip
+
+# Local screenshots and test output
+screenshots/
+shots/
+*.log
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/

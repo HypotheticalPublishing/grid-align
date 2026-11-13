@@ -63,20 +63,6 @@ The window opens beside the map, with the scene's name at the top (and the level
 - GM only. The GM needs permission to update the scene and its level.
 - Square grids and all four of Foundry's hex grid types.
 
-Testing: the author tested version 1.0.2 live in Foundry V14; 1.0.3 changes only the release metadata. Each release is also checked headless: unit tests, and a browser check that drives the window in a simulated Foundry scene. The grid adjustments were checked against the square and hex grid classes and the grid shaders from Foundry 14.369.
-
-## Limits
-
-- Gridless scenes aren't supported.
-- The 3×3 box is for square grids only. Hex grids still get cell size, drag and nudge.
-- Out of scope: aligning tiles, rotating or rescaling the map image, fractional cell sizes, and cell sizes under 50 px.
-- The level needs a background image.
-- Cell size and grid shift apply to every level of the scene.
-- Changing the cell size can change token footprints, as it does in Foundry itself.
-- Only one GM should align a scene at a time. If the scene's grid, size or background changes elsewhere while the window is open, close it and open it again.
-- Modules that bypass Foundry's grid API, or replace its grid methods after Grid Align loads, may need compatibility work.
-- Keep Grid Align turned on while a scene uses a shifted grid. Turning it off puts the grid back in Foundry's default position; the saved shift returns when you turn it on again. To remove Grid Align for good and keep the grid where Foundry puts it, use **Clear grid shift**, then **Apply alignment**, before turning it off.
-
 ## For Developers
 
 - API: `game.modules.get('grid-align').api.open()` opens the window for the scene being viewed (GM only) and resolves to the window.
